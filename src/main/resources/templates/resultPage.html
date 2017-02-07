@@ -2,9 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head lang="pl">
 <meta charset="UTF-8">
-<title>Witaj w Thymeleaf!</title>
+<title>Witaj w Tweeterze</title>
 </head>
 <body>
-	<span th:text="${message}">Witaj świecie!</span>
+	<ul>
+		<li th:each="tweet : ${tweets}" th:text="${tweet}">Losowy tweet</li>
+	</ul>
 </body>
 </html>
