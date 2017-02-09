@@ -1,8 +1,6 @@
 package masterSpringMvc.controller;
 
 import java.util.List;
-import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.social.twitter.api.SearchResults;
 import org.springframework.social.twitter.api.Tweet;
@@ -18,6 +16,11 @@ public class TweetController {
 	private Twitter twitter;
 	
 	@RequestMapping("/")
+	public String home() {
+		return "searchPage";
+	}
+	
+	@RequestMapping("/result")
 	public String hello(@RequestParam(defaultValue = "Civilization VI") String search, Model model) {
 		SearchResults searchResults = twitter.searchOperations().search(search);
 		List<Tweet> tweets = searchResults.getTweets();
