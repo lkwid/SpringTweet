@@ -3,6 +3,7 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{default}">
 <head lang="pl">
+<meta charset="UTF-8" />
 <title>Witaj w Twitterze</title>
 </head>
 <body>
@@ -12,8 +13,8 @@
 		<ul class="collection">
 			<li class="collection-item avatar" th:each="tweet : ${tweets}">
 				<img th:src="${tweet.user.profileImageUrl}" alt="" class="circle" />
-				<span class="title" th:text="${tweet.user.name}">U¿ytkownik</span>
-				<p th:text="${tweet.text}">Treœæ tweeta</p>
+				<span class="title" th:text="${tweet.user.name}">UÅ¼ytkownik</span>
+				<p th:text="${tweet.text}">TreÅ›Ä‡ tweeta</p>
 			</li>
 		</ul>
 	</div>
