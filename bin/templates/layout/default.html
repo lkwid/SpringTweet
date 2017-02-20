@@ -5,19 +5,39 @@
 <meta charset="UTF-8" />
 <meta name="viewport"
 	content="width=device-width, initialscale=1.0, maximum-scale=1.0, user-scalable=no" />
-<link href="/webjars/materializecss/0.97.7/css/materialize.css"
+<link href="/webjars/materializecss/0.97.7/css/materialize.min.css"
 	type="text/css" rel="stylesheet" media="screen,projection" />
-<link href="/css/custom.css"
-	type="text/css" rel="stylesheet" media="screen,projection" />
+<link href="/css/custom.css" type="text/css" rel="stylesheet"
+	media="screen,projection" />
 <link href="/webjars/material-design-icons/3.0.1/material-icons.css"
 	rel="stylesheet">
 <title>Domyślny tytuł</title>
 </head>
 <body>
+	<ul id="lang-dropdown" class="dropdown-content">
+		<li><a href="?lang=pl-PL">Polski</a></li>
+		<li><a href="?lang=en-US">Angielski</a></li>
+	</ul>
+	<div class="container">
+		<nav>
+			<div class="nav-wrapper indigo">
+				<ul class="right">
+					<li><a class="dropdown-button" href="#!"
+						data-activates="lang-dropdown">Język<i
+							class="material-icons right">arrow_drop_down</i></a></li>
+				</ul>
+			</div>
+		</nav>
+	</div>
 	<section layout:fragment="content">
 		<p>Zawartość strony</p>
 	</section>
 	<script type="text/javascript" src="/webjars/jquery/3.1.1-1/jquery.js"></script>
-	<script type="text/javascript" src="/webjars/materializecss/0.97.7/css/materialize.css"></script>	
+	<script type="text/javascript"
+		src="/webjars/materializecss/0.97.7/js/materialize.min.js"></script>
+	<script>
+		$(".dropdown-button").dropdown();
+	</script>
+
 </body>
 </html>
