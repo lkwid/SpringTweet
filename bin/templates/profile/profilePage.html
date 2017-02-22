@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{layout/default}">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/default}">
 <head lang="pl">
 <meta charset="UTF-8">
 <title>Twój profil</title>
@@ -9,38 +7,60 @@
 <body>
 	<div class="container" layout:fragment="content">
 		<div class="row">
-			<h2 class="indigo-text center-align">Informacje osobiste</h2>
-			<form th:action="@{/profile}" th:object="${profileForm}"
-				method="post" class="col m8 s12 offset-m2">
+			<h2 class="indigo-text center-align" th:text="#{profile.title}">Informacje osobiste</h2>
+			<form th:action="@{/profile}" th:object="${profileForm}" method="post" class="col m8 s12 offset-m2">
 				<div class="row">
 					<div class="input-field col s6">
-						<input th:field="${profileForm.twitterHandle}" id="twitterHandle"
-							type="text" th:errorclass="invalid"> <label
-							for="twitterHandle">Identyfikator Twitter</label>
+						<input th:field="${profileForm.twitterHandle}" id="twitterHandle" type="text" required="required" th:errorclass="invalid">
+						<label for="twitterHandle" th:text="#{twitter.handle}">Identyfikator Twitter</label>
 						<div th:errors="*{twitterHandle}" class="red-text">Błąd</div>
 					</div>
 					<div class="input-field col s6">
-						<input th:field="${profileForm.email}" id="email" type="email"
-							th:errorclass="invalid"> <label for="email">Adres e-mail</label>
+						<input th:field="${profileForm.email}" id="email" type="email" required="required" th:errorclass="invalid">
+						<label for="email" th:text="#{email}">Adres e-mail</label>
 						<div th:errors="*{email}" class="red-text">Błąd</div>
 					</div>
 				</div>
 				<div class="row">
 					<div class="input-field col s6">
-						<input th:field="${profileForm.birthDate}" id="birthDate"
-							type="text" th:placeholder=${dateFormat} th:errorclass="invalid">
-						<label for="birthDate" class="active">Data urodzenia</label>
+						<input th:field="${profileForm.birthDate}" id="birthDate" type="text" required="required" th:placeholder="${dateFormat}" th:errorclass="invalid">
+						<label for="birthDate" class="active" th:text="#{birthdate}">Data urodzenia</label>
 						<div th:errors=*{birthDate} class="red-text">Błąd</div>
 					</div>
 				</div>
+				<fieldset class="row">
+					<legend th:text="#{tastes.legend}">Co lubisz?</legend>
+					<button class="btn teal waves-effect" type="submit" name="addTaste">
+						<span th:text="#{add.taste}" th:remove="tag">Dodaj preferencję</span><i class="material-icons left">add</i>
+					</button>
+					<div th:errors="*{tastes}" class="red-text">Błąd</div>
+					<div class="row" th:each="row,rowStat : *{tastes}">
+						<div class="col s6">
+							<input type="text" required="required" th:field="*{tastes[__${rowStat.index}__]}" th:placeholder="#{taste.placeholder}" />
+						</div>
+						<div class="col s6">
+							<button class="btn red waves-effect" type="submit" name="removeTaste" th:value="${rowStat.index}">
+								<span th:text="#{remove}" th:remove="tag">Usuń</span><i class="material-icons right">delete</i>
+							</button>
+						</div>
+					</div>
+				</fieldset>
 				<div class="row">
-					<button class="btn wave-effect waves-light" type="submit"
-						name="save">
-						Wyślij<i class="material-icons right">send</i>
+					<button class="btn waves-effect waves-light" type="submit" name="save">
+						<span th:text="#{submit}" th:remove="tag">Wyślij</span><i class="material-icons right">send</i>
 					</button>
 				</div>
 			</form>
 		</div>
 	</div>
+	<script layout:fragment="script">
+		$('button').bind('click', function(e) {
+			if (e.currentTarget.name === 'save') {
+				$(e.currentTarget.form).removeAttr('novalidate');
+			} else {
+				$(e.currentTarget.form).attr('novalidate', 'novalidate');
+			}
+		});
+	</script>
 </body>
 </html>
