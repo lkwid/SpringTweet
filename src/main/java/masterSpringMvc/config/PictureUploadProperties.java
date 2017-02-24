@@ -22,5 +22,4 @@ public class PictureUploadProperties {
 		this.anonymousPicture = new DefaultResourceLoader().getResource(anonymousPicture);
 	}
 	
-	
 }
