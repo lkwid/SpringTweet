@@ -1,4 +1,4 @@
-package masterSpringMvc.profile;
+package master_spring_mvc.profile;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -25,13 +25,13 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import masterSpringMvc.config.PictureUploadProperties;
+import master_spring_mvc.config.PictureUploadProperties;
 
 @Controller
 public class PictureUploadController {
 	private final Resource picturesDir;
 	private final Resource anonymousPicture;
-	private final MessageSource messageSource;	
+	private final MessageSource messageSource;
 	private UserProfileSession userProfileSession;
 
 	@Autowired
@@ -52,13 +52,13 @@ public class PictureUploadController {
 		response.setHeader("Content-Type", URLConnection.guessContentTypeFromName(picturePath.getFilename()));
 		IOUtils.copy(picturePath.getInputStream(), response.getOutputStream());
 	}
-	
-	@PostMapping(value = "/profile", params = {"upload"})
+
+	@PostMapping(value = "/profile", params = { "upload" })
 	public String onUpload(@RequestParam MultipartFile file, RedirectAttributes redirectAttrs) throws IOException {
 		if (file.isEmpty() || !isImage(file)) {
 			redirectAttrs.addFlashAttribute("error", "Niewłaściwy plik. Załaduj plik z obrazem");
 			return "redirect:/profile";
-		}		
+		}
 		Resource picturePath = copyFileToPicture(file);
 		userProfileSession.setPicturePath(picturePath);
 		return "redirect:/profile";
@@ -72,13 +72,13 @@ public class PictureUploadController {
 		}
 		return new FileSystemResource(tempFile);
 	}
-	
+
 	@ExceptionHandler(IOException.class)
 	public String handleIOException(Locale locale, Model model) {
 		model.addAttribute("error", messageSource.getMessage("upload.io.exception", null, locale));
 		return "forward:/profile";
 	}
-	
+
 	@RequestMapping("/uploadError")
 	public ModelAndView onUploadError(Locale locale, Model model) {
 		ModelAndView modelAndView = new ModelAndView("/profile/profilePage");

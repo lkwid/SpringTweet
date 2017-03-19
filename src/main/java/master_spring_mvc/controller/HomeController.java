@@ -1,4 +1,4 @@
-package masterSpringMvc.controller;
+package master_spring_mvc.controller;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import masterSpringMvc.profile.UserProfileSession;
+import master_spring_mvc.profile.UserProfileSession;
 
 @Controller
 public class HomeController {

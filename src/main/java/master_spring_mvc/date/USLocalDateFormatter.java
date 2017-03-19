@@ -1,4 +1,4 @@
-package masterSpringMvc.date;
+package master_spring_mvc.date;
 
 import java.text.ParseException;
 import java.time.LocalDate;
@@ -7,10 +7,9 @@ import java.util.Locale;
 
 import org.springframework.format.Formatter;
 
-public class USLocalDateFormatter implements Formatter<LocalDate>{
+public class USLocalDateFormatter implements Formatter<LocalDate> {
 	public static final String US_PATTERN = "MM/dd/yyyy";
 	public static final String NORMAL_PATTERN = "yyyy-MM-dd";
-	
 
 	@Override
 	public String print(LocalDate object, Locale locale) {
@@ -21,13 +20,13 @@ public class USLocalDateFormatter implements Formatter<LocalDate>{
 	public LocalDate parse(String text, Locale locale) throws ParseException {
 		return LocalDate.parse(text, DateTimeFormatter.ofPattern(getPattern(locale)));
 	}
-	
+
 	public static String getPattern(Locale locale) {
 		return isUnitedStates(locale) ? US_PATTERN : NORMAL_PATTERN;
 	}
 
 	private static boolean isUnitedStates(Locale locale) {
 		return Locale.US.getCountry().equals(locale.getCountry());
-	}	
+	}
 
 }

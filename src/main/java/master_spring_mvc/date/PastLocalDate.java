@@ -1,4 +1,4 @@
-package masterSpringMvc.date;
+package master_spring_mvc.date;
 
 import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
@@ -19,17 +19,20 @@ import javax.validation.Payload;
 @Constraint(validatedBy = PastLocalDate.PastValidator.class)
 public @interface PastLocalDate {
 	String message() default "{javax.validation.constraints.Past.message}";
-	Class<?>[] groups() default{};
-	Class<? extends Payload>[] payload() default {}; 
-	
+
+	Class<?>[] groups() default {};
+
+	Class<? extends Payload>[] payload() default {};
+
 	class PastValidator implements ConstraintValidator<PastLocalDate, LocalDate> {
 		@Override
-		public void initialize(PastLocalDate past) {}
+		public void initialize(PastLocalDate past) {
+		}
 
 		@Override
 		public boolean isValid(LocalDate localDate, ConstraintValidatorContext context) {
 			return localDate == null || localDate.isBefore(LocalDate.now());
-		}		
+		}
 	}
-	
+
 }

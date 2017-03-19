@@ -1,4 +1,4 @@
-package masterSpringMvc.config;
+package master_spring_mvc.config;
 
 import java.time.LocalDate;
 
@@ -21,7 +21,7 @@ import org.springframework.web.util.UrlPathHelper;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
-import masterSpringMvc.date.USLocalDateFormatter;
+import master_spring_mvc.date.USLocalDateFormatter;
 
 @Configuration
 public class WebConfiguration extends WebMvcConfigurerAdapter {
@@ -29,22 +29,22 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
 	@Override
 	public void addFormatters(FormatterRegistry registry) {
 		registry.addFormatterForFieldType(LocalDate.class, new USLocalDateFormatter());
-	}	
-	
+	}
+
 	@Bean
 	public LocaleResolver localeResolver() {
 		return new SessionLocaleResolver();
 	}
-	
+
 	@Bean
 	public LocaleChangeInterceptor localeChangeInterceptor() {
 		LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
 		localeChangeInterceptor.setParamName("lang");
 		return localeChangeInterceptor;
 	}
-	
+
 	@Bean
-	public EmbeddedServletContainerCustomizer containerCustomizer() {		
+	public EmbeddedServletContainerCustomizer containerCustomizer() {
 		return container -> container.addErrorPages(new ErrorPage(MultipartException.class, "/uploadError"));
 	}
 
@@ -56,10 +56,11 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
 	@Override
 	public void configurePathMatch(PathMatchConfigurer configurer) {
 		UrlPathHelper urlPathHelper = new UrlPathHelper();
-		urlPathHelper.setRemoveSemicolonContent(false);
-		configurer.setUrlPathHelper(urlPathHelper);		
-	}	
-	
+		urlPathHelper.setRemoveSemicolonContent(false);		
+		configurer.setUrlPathHelper(urlPathHelper);
+		configurer.setUseRegisteredSuffixPatternMatch(true);
+	}
+
 	@Bean
 	@Primary
 	public ObjectMapper objectMapper(Jackson2ObjectMapperBuilder builder) {
@@ -67,5 +68,5 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
 		objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
 		return objectMapper;
 	}
-	
+
 }

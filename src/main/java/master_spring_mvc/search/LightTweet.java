@@ -1,4 +1,4 @@
-package masterSpringMvc.search;
+package master_spring_mvc.search;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -14,11 +14,11 @@ public class LightTweet {
 	private LocalDateTime date;
 	private String lang;
 	private Integer retweetCount;
-	
+
 	public LightTweet(String text) {
 		this.text = text;
 	}
-	
+
 	public static LightTweet ofTweet(Tweet tweet) {
 		LightTweet lightTweet = new LightTweet(tweet.getText());
 		Date createdAt = tweet.getCreatedAt();
@@ -57,6 +57,6 @@ public class LightTweet {
 
 	public Integer getRetweetCount() {
 		return retweetCount;
-	}	
+	}
 
 }

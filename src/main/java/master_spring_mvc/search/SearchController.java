@@ -1,4 +1,4 @@
-package masterSpringMvc.search;
+package master_spring_mvc.search;
 
 import java.util.List;
 
@@ -12,19 +12,19 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class SearchController {
 	private SearchService searchService;
-	
+
 	@Autowired
 	public SearchController(SearchService searchService) {
 		this.searchService = searchService;
 	}
-	
+
 	@RequestMapping("/search/{searchType}")
 	public ModelAndView search(@PathVariable String searchType, @MatrixVariable List<String> keywords) {
-	List<LightTweet> tweets = searchService.search(searchType, keywords);
-	ModelAndView modelAndView = new ModelAndView("resultPage");
-	modelAndView.addObject("tweets", tweets);
-	modelAndView.addObject("search", String.join(",", keywords));
-	return modelAndView;
+		List<LightTweet> tweets = searchService.search(searchType, keywords);
+		ModelAndView modelAndView = new ModelAndView("resultPage");
+		modelAndView.addObject("tweets", tweets);
+		modelAndView.addObject("search", String.join(",", keywords));
+		return modelAndView;
 	}
 
 }

@@ -1,4 +1,4 @@
-package masterSpringMvc.profile;
+package master_spring_mvc.profile;
 
 import java.util.Locale;
 
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import masterSpringMvc.date.USLocalDateFormatter;
+import master_spring_mvc.date.USLocalDateFormatter;
 
 @Controller
 public class ProfileController {
@@ -33,7 +33,7 @@ public class ProfileController {
 	public String localFormat(Locale locale) {
 		return USLocalDateFormatter.getPattern(locale);
 	}
-	
+
 	@RequestMapping("/profile")
 	public String displayProfile() {
 		return "/profile/profilePage";
