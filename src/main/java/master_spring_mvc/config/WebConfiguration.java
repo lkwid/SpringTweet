@@ -22,8 +22,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
 import master_spring_mvc.date.USLocalDateFormatter;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Configuration
+@EnableSwagger2
 public class WebConfiguration extends WebMvcConfigurerAdapter {
 
 	@Override
@@ -56,7 +60,7 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
 	@Override
 	public void configurePathMatch(PathMatchConfigurer configurer) {
 		UrlPathHelper urlPathHelper = new UrlPathHelper();
-		urlPathHelper.setRemoveSemicolonContent(false);		
+		urlPathHelper.setRemoveSemicolonContent(false);
 		configurer.setUrlPathHelper(urlPathHelper);
 		configurer.setUseRegisteredSuffixPatternMatch(true);
 	}
@@ -67,6 +71,11 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
 		ObjectMapper objectMapper = builder.createXmlMapper(false).build();
 		objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
 		return objectMapper;
+	}
+
+	@Bean
+	public Docket userApi() {
+		return new Docket(DocumentationType.SWAGGER_2).select().paths(path -> path.startsWith("/api/")).build();
 	}
 
 }
