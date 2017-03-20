@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extrasspringsecurity3">
 <head lang="pl">
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-<link href="/webjars/materializecss/0.97.7/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection" />
+<link href="/webjars/materializecss/0.97.7/css/materialize.min.css" type="text/css" rel="stylesheet"
+	media="screen,projection" />
 <link href="/css/custom.css" type="text/css" rel="stylesheet" media="screen,projection" />
-<link href="/webjars/material-design-icons/3.0.1/material-icons.css" rel="stylesheet">
+<link href="/webjars/material-design-icons/3.0.1/material-icons.css" rel="stylesheet" />
 <title>Domyślny tytuł</title>
 </head>
 <body>
@@ -17,14 +19,23 @@
 		<nav>
 			<div class="nav-wrapper indigo">
 				<ul class="right">
-					<li><a class="dropdown-button" href="#!" data-activates="lang-dropdown">Język<i class="material-icons right">arrow_drop_down</i></a></li>
+					<li><a class="dropdown-button" href="#!" data-activates="lang-dropdown">Język<i
+							class="material-icons right">arrow_drop_down</i></a></li>
 				</ul>
 			</div>
 		</nav>
+		<div>
+			Jesteś zalogowany jako <b sec:authentication="name" /> z rolami <span sec:authentication="authorities" />
+			-
+			<form th:action="@{/logout}" method="post" style="display: inline-block">
+				<input type="submit" value="Wyloguj" />
+			</form>
+			<hr />
+		</div>
+		<section layout:fragment="content">
+			<p>Zawartość strony</p>
+		</section>
 	</div>
-	<section layout:fragment="content">
-		<p>Zawartość strony</p>
-	</section>
 	<script type="text/javascript" src="/webjars/jquery/3.1.1-1/jquery.js"></script>
 	<script type="text/javascript" src="/webjars/materializecss/0.97.7/js/materialize.min.js"></script>
 	<script type="text/javascript" layout:fragment="script"></script>
