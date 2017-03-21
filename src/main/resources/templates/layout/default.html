@@ -24,7 +24,7 @@
 				</ul>
 			</div>
 		</nav>
-		<div>
+		<div sec:authorize="isAuthenticated()">
 			Jesteś zalogowany jako <b sec:authentication="name" /> z rolami <span sec:authentication="authorities" />
 			-
 			<form th:action="@{/logout}" method="post" style="display: inline-block">
