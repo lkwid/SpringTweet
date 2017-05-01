@@ -43,4 +43,8 @@ dependencies {
 	compile('io.springfox:springfox-swagger-ui:2.6.1')
 	compile('org.thymeleaf.extras:thymeleaf-extras-springsecurity4')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
+	testCompile('com.jayway.jsonpath:json-path')
+	testCompile('org.assertj:assertj-core:3.6.2')	
+	testCompile('org.springframework.security:spring-security-test:4.0.0.RELEASE')
+	
 }

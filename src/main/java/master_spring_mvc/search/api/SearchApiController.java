@@ -10,15 +10,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import master_spring_mvc.search.LightTweet;
-import master_spring_mvc.search.SearchService;
+import master_spring_mvc.search.TwitterSearch;
 
 @RestController
 @RequestMapping("/api/search")
 public class SearchApiController {
-	private SearchService searchService;
+	private TwitterSearch searchService;
 
 	@Autowired
-	public SearchApiController(SearchService searchService) {
+	public SearchApiController(TwitterSearch searchService) {
 		this.searchService = searchService;
 	}
 

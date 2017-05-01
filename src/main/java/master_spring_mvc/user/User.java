@@ -10,6 +10,12 @@ public class User {
 	private LocalDate birthDate;
 	private List<String> tastes = new ArrayList<>();
 	
+	public User(String email) {
+		this.email = email;
+	}	
+	
+	public User(){};
+	
 	public String getTwitterHandle() {
 		return twitterHandle;
 	}

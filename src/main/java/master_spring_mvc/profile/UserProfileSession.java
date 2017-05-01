@@ -30,6 +30,14 @@ public class UserProfileSession implements Serializable {
 		this.tastes = profileForm.getTastes();
 	}
 
+	public List<String> getTastes() {
+		return tastes;
+	}
+
+	public void setTastes(List<String> tastes) {
+		this.tastes = tastes;
+	}
+
 	public ProfileForm toForm() {
 		ProfileForm profileForm = new ProfileForm();
 		;
