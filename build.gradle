@@ -1,6 +1,6 @@
 buildscript {
 	ext {
-		springBootVersion = '1.5.2.RELEASE'
+		springBootVersion = '1.5.3.RELEASE'
 	}
 	repositories {
 		mavenCentral()
@@ -45,6 +45,29 @@ dependencies {
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	testCompile('com.jayway.jsonpath:json-path')
 	testCompile('org.assertj:assertj-core:3.6.2')	
-	testCompile('org.springframework.security:spring-security-test:4.0.0.RELEASE')
-	
+	testCompile('org.springframework.security:spring-security-test:4.0.0.RELEASE')	
+	testCompile('org.fluentlenium:fluentlenium-junit:3.2.0')
+	testCompile('org.fluentlenium:fluentlenium-assertj:3.2.0')	
+	testCompile('org.seleniumhq.selenium:selenium-java:3.4.0')	
+}
+
+configurations {
+	testCompile {
+		exclude module: 'selenium-safari-driver'		
+	}	
+	integrationTestCompile.extendsFrom testCompile
+	integrationTestRuntime.extendsFrom testRuntime
+}
+
+sourceSets {
+	integrationTest {
+		compileClasspath += main.output + test.output
+		runtimeClasspath += main.output + test.output
+	}
+}
+
+task integrationTest(type : Test) {
+	testClassesDir = sourceSets.integrationTest.output.classesDir
+	classpath = sourceSets.integrationTest.runtimeClasspath
+	reports.html.destination = file("${reporting.baseDir}/integrationTests")
 }
