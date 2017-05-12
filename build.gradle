@@ -10,7 +10,7 @@ buildscript {
 	}
 }
 
-apply plugin: 'java'
+apply plugin: 'groovy'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 
@@ -49,6 +49,8 @@ dependencies {
 	testCompile('org.fluentlenium:fluentlenium-junit:3.2.0')
 	testCompile('org.fluentlenium:fluentlenium-assertj:3.2.0')	
 	testCompile('org.seleniumhq.selenium:selenium-java:3.4.0')	
+	testCompile('org.codehaus.groovy:groovy-all:2.4.11')
+	testCompile('org.spockframework:spock-spring')
 }
 
 configurations {

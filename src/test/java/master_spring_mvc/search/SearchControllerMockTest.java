@@ -1,6 +1,6 @@
 package master_spring_mvc.search;
 
-import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.everyItem;
 import static org.hamcrest.Matchers.hasProperty;
 import static org.mockito.Matchers.anyListOf;
