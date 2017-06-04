@@ -1,5 +1,6 @@
 package master_spring_mvc.search;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
@@ -7,7 +8,8 @@ import java.util.Date;
 import org.springframework.social.twitter.api.Tweet;
 import org.springframework.social.twitter.api.TwitterProfile;
 
-public class LightTweet {
+@SuppressWarnings("serial")
+public class LightTweet implements Serializable {
 	private String profileImageUrl;
 	private String user;
 	private String text;
