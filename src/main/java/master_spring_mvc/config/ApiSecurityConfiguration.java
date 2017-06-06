@@ -25,6 +25,8 @@ public class ApiSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 		.antMatcher("/api/**")
+		.headers().cacheControl().disable()
+		.and()
 		.httpBasic()
 		.and()
 		.csrf().disable()
@@ -34,8 +36,6 @@ public class ApiSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		.antMatchers(HttpMethod.PUT, "/api/**").hasRole("ADMIN")
 		.antMatchers(HttpMethod.DELETE, "/api/**").hasRole("ADMIN")
 		.anyRequest().authenticated();		
-	}
-	
-	
+	}	
 
 }
